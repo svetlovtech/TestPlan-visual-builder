@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Testplan visual builder</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript">
+        $(function () {
+            $('#test-plan-chart').highcharts({
+                title: {
+                    text: 'Test plan',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: 'Vuser by operations',
+                    x: -20
+                },
+                xAxis: {
+                    type: 'time'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Vusers'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: 'VU'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: [{
+                    name: 'UC_01',
+                    data: [0, 2, 5, 5, 5, 7, 10, 10, 10, 10, 10, 0]
+                }, {
+                    name: 'UC_02',
+                    data: [0, 4, 8, 8, 8, 12, 16, 16, 16, 16, 16, 0]
+                }, {
+                    name: 'Summary',
+                    data: [0, 6, 13, 13, 13, 19, 26, 26, 26, 26, 26, 0]
+                }]
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Testplan visual builder</h1>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-primary">New</button>
+            <button type="button" class="btn btn-primary">Import</button>
+            <button type="button" class="btn btn-primary">Export</button>
+            <button type="button" class="btn btn-link">Help</button>
+        </div>
+
+    </div>
+    <div class="container">
+        <div id="test-plan-chart"></div>
+    </div>
+    <div class="container" , id="test-plan">
+        <h2>Test plan options:</h2>
+
+
+        <div class="row">
+            <div class="col-lg-1"><label for="test-plan-name">Testname:</label></div>
+            <div class="col-lg-11"><input type="text" class="form-control" id="test-plan-name" value="Test plan name">
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary">Add operation</button>
+        <button type="button" class="btn btn-danger">Delete all operations</button>
+    </div>
+    <div class="container" , id="operations">
+        <h3>Operations:</h3>
+
+
+        <div class="container" , id="operation">
+            <div class="row">
+                <div class="col-lg-2"><label for="test-plan-name">Operation name:</label></div>
+                <div class="col-lg-10"><input type="text" class="form-control" id="test-plan-name" value="UC_">
+                </div>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary">Add stage</button>
+                <button type="button" class="btn btn-primary">Duplicate operation</button>
+                <button type="button" class="btn btn-danger">Delete all stages</button>
+            </div>
+
+
+            <div class="container" , id="stages">
+                <h4>Stages:</h4>
+
+                <div class="container" , id="stage">
+                    <div class="row">
+                        <div class="col-lg-1"><label for="test-plan-name">Vusers:</label></div>
+                        <div class="col-lg-11"><input type="text" class="form-control" id="test-plan-name"
+                                value="Test plan name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"><label for="test-plan-name">RampUp:</label></div>
+                        <div class="col-lg-11"><input type="text" class="form-control" id="test-plan-name"
+                                value="Test plan name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"><label for="test-plan-name">Duration:</label></div>
+                        <div class="col-lg-11"><input type="text" class="form-control" id="test-plan-name"
+                                value="Test plan name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary">Duplicate stage</button>
+                        <button type="button" class="btn btn-danger">Delete stage</button>
+                    </div>
+                </div>
+
+                <div class="container" , id="stage">
+                    <div class="row">
+                        <div class="col-lg-1"><label for="test-plan-name">Vusers:</label></div>
+                        <div class="col-lg-11"><input type="text" class="form-control" id="test-plan-name"
+                                value="Test plan name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"><label for="test-plan-name">RampUp:</label></div>
+                        <div class="col-lg-11"><input type="text" class="form-control" id="test-plan-name"
+                                value="Test plan name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"><label for="test-plan-name">Duration:</label></div>
+                        <div class="col-lg-11"><input type="text" class="form-control" id="test-plan-name"
+                                value="Test plan name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary">Duplicate stage</button>
+                        <button type="button" class="btn btn-danger">Delete stage</button>
+                    </div>
+                </div>
+
+                <div class="container" , id="ramp-down">
+                    <div class="row">
+                        <div class="col-lg-1"><label for="test-plan-name">Ramp down:</label></div>
+                        <div class="col-lg-11"><input type="text" class="form-control" id="test-plan-name" value="10">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
