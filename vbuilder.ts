@@ -44,7 +44,7 @@ class Operation
 
     deleteStage(stageIndex: number)
     {
-        var name = this.stages.splice(stageIndex, 1)
+        let name = this.stages.splice(stageIndex, 1)
         console.log(`name = ${JSON.stringify(name)}`)
     }
 }
@@ -59,9 +59,34 @@ class TestPlan
         this.operations = [];
     }
 
-    addNewOperation(operation: Operation){
-        console.log('addNewOperation')
+    addNewEmptyOperation(operationName: string)
+    {
+        console.log(`operationName = ${operationName}`)
+        this.addNewOperation(new Operation(operationName))
+    }
+
+    addNewOperation(operation: Operation)
+    {
+        console.log(`operation = ${JSON.stringify(operation)}`)
         this.operations.push(operation)
+    }
+
+    getSeriesData()
+    {
+        let seriesData = []
+        for (let i = 0; i < this.operations.length; i++) {
+            let data = []
+            for (let j = 0; j < this.operations[i].stages.length; j++) {
+                data.push(this.operations[i].stages[j].vusers)
+            }
+
+            let series = {
+                name: this.operations[i].operationName,
+                data: data
+            }
+            seriesData.push(series)
+        }
+        return seriesData
     }
 }
 
@@ -76,3 +101,4 @@ for (let i = 0; i < 10; i++) {
     testPlan.addNewOperation(operation)
 }
 console.log(`testPlan = ${JSON.stringify(testPlan)}`)
+console.log(`testPlan.getSeriesData() = ${JSON.stringify(testPlan.getSeriesData())}`)
