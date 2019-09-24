@@ -86,6 +86,30 @@ class TestPlan
             }
             seriesData.push(series)
         }
+
+        let maxDataLength = 0
+        for (let i = 0; i < seriesData.length; i++) {
+            if (seriesData[i].data.length > maxDataLength) {
+                maxDataLength = seriesData[i].data.length
+            }
+        }
+        console.log(`maxDataLength = ${maxDataLength}`)
+
+        let summaryData = []
+        for (let i = 0; i < maxDataLength; i++) {
+            let summaryVU = 0
+            for (let j = 0; j < seriesData.length; j++) {
+                summaryVU = summaryVU + seriesData[j].data[i]
+            }
+            summaryData.push(summaryVU)
+        }
+
+        let summarySeries = {
+            name: 'Summary',
+            data: summaryData
+        }
+
+        seriesData.push(summarySeries)
         return seriesData
     }
 }
