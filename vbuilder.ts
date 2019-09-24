@@ -23,11 +23,18 @@ class Operation
         this.rampDown = 0;
     }
 
-    addNewStage()
+    addNewEmptyStage()
     {
-        console.log('addNewOperation')
+        console.log('addNewEmptyStage')
         this.stages.push(new Stage(20, 5, 5))
     }
+
+    addNewStage(stageData: Stage)
+    {
+        console.log('addNewStage')
+        this.stages.push(stageData)
+    }
+
 
     changeStage(stageIndex: number, stageData: Stage)
     {
@@ -51,17 +58,21 @@ class TestPlan
         this.testPlanName = testPlanName;
         this.operations = [];
     }
+
+    addNewOperation(operation: Operation){
+        console.log('addNewOperation')
+        this.operations.push(operation)
+    }
 }
 
 
-const oper = new Operation('qweasd');
-oper.addNewStage()
-oper.addNewStage()
-oper.changeStage(1, new Stage(10, 10, 10))
-oper.addNewStage()
-oper.addNewStage()
-oper.changeStage(1, new Stage(30, 10, 10))
-console.log(oper)
-console.log(`oper = ${JSON.stringify(oper)}`)
-oper.deleteStage(0)
-console.log(`oper = ${JSON.stringify(oper)}`)
+let testPlan = new TestPlan('My new testplan')
+for (let i = 0; i < 10; i++) {
+    let operation = new Operation(`UC_0${i}`)
+    console.log(`operation = ${JSON.stringify(operation)}`)
+    for (let j = 0; j < 10; j++) {
+        operation.addNewStage(new Stage(20, 5, 10))
+    }
+    testPlan.addNewOperation(operation)
+}
+console.log(`testPlan = ${JSON.stringify(testPlan)}`)
